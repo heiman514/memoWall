@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <title>Memo Wall</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Memo Wall</h1>
+        <div class="memoWall">
+            <div class="memoContainer">
+                <!-- enctype="multipart/form-data" if have file type input-->
+                <form method="POST" action="/memo" class="memo"> 
+                    <textarea id="memoContent" name="content" placeholder="Write Something..."></textarea>
+                    <div class="memoBtn">
+                        <input type="submit" value="Post Memo" class="postBtn">
+                    </div>
+                </form>
+                <div class="memoList">
+                    <div id='{id}' class="memo">
+                        <textarea class="memoContent">{content}</textarea>
+                        <div class="memoBtn">
+                            <div>
+                                <a onclick="saveMemo(event)" class="updateMemo" ><i class="fa-regular fa-floppy-disk"></i></a>
+                                <a onclick="delMemo(event)" class="delMemo"><i class="fa-solid fa-trash-can"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="memo.js"></script>
+</body>
+</html>
