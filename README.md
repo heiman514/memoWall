@@ -5,6 +5,7 @@ This is a web app can help you to mark down the content as a memo, the functions
 - HTML
 - CSS
 - Javascript
+- Typescript
 - NodeJS
 - Express
 - Socket.io
