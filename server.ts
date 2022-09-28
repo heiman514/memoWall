@@ -6,7 +6,6 @@ import SocketIO from 'socket.io'
 
 // Routes
 import { memoRoutes } from './routes/memo'
-import { userRoutes } from  './routes/user'
  
 //Setup 
 const app = express();
@@ -26,7 +25,6 @@ app.use(express.static('public'))
 
 //user router
 app.use(memoRoutes(io))
-app.use(userRoutes)
 
 io.on('connection', function(socket) {
     console.log('socket connected: ' +socket.id);

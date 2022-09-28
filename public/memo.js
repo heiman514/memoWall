@@ -1,11 +1,3 @@
-// let login = document.querySelector('.login')
-// let signup = document.querySelector('.signup')
-// let profile = document.querySelector('.profile')
-// let welcome = profile.querySelector('#welcome')
-
-// let isLoginMode = true
-// let isLoggedIn = false
-
 const socket = io('http://localhost:3000')
 
 socket.on('connect',()=>{
@@ -19,19 +11,6 @@ socket.on('new-memo', memo=>{
 socket.on('update-memo', ()=>{
     loadMemoList()
 })
-
-function change() {
-    console.log(login, signup);
-    if (isLoginMode) {
-        login.style.display = 'none'
-        signup.style.display = 'block'
-        isLoginMode = false
-    } else {
-        login.style.display = 'block'
-        signup.style.display = 'none'
-        isLoginMode = true
-    }
-}
 
 let memoList = document.querySelector('.memoList')
 let memoTemplate = memoList.querySelector('.memo')

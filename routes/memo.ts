@@ -5,8 +5,13 @@ import socketIO from 'socket.io'
 export let memoRoutes = (io: socketIO.Server) => {
     let memoRoutes = Router()
 
-    // add memo
-    memoRoutes.post('/memo', async (req: Request, res: Response) => {
+    memoRoutes.get('/memos', getAllMemo)
+    memoRoutes.post('/memo', addMemo)
+    memoRoutes.put('/memo', updateMemo)
+    memoRoutes.delete('/memo', deleteMemo)
+
+    // add memo function 
+    async function addMemo(req:Request, res:Response) {
         try {
             let { content } = req.body
             if (!content) {
@@ -28,10 +33,10 @@ export let memoRoutes = (io: socketIO.Server) => {
             res.status(500)
             res.end(String(err))
         }
-    })
+    }
 
     // get all memos
-    memoRoutes.get('/memos', async (req: Request, res: Response) => {
+    async function getAllMemo(req:Request, res:Response) {
         try {
             let memos = await client.query(`select * from memo;`)
 
@@ -46,9 +51,10 @@ export let memoRoutes = (io: socketIO.Server) => {
             res.status(500)
             res.end(String(err))
         }
-    })
+    }
 
-    memoRoutes.put('/memo', async (req: Request, res: Response) => {
+    // update one memo
+    async function updateMemo(req:Request, res:Response) {
         try {
             console.log(req.body);
             let { id, content } = req.body
@@ -73,9 +79,10 @@ export let memoRoutes = (io: socketIO.Server) => {
             res.status(500)
             res.end(String(err))
         }
-    })
+    }
 
-    memoRoutes.delete('/memo', async (req: Request, res: Response) => {
+    // delete one memo
+    async function deleteMemo(req:Request, res:Response) {
         try {
             let { id } = req.body
 
@@ -94,7 +101,7 @@ export let memoRoutes = (io: socketIO.Server) => {
             res.status(500)
             res.end(String(err))
         }
-    })
+    }
 
     return memoRoutes
 }
